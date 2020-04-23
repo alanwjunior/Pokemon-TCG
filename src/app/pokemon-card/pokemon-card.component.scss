@@ -1,0 +1,91 @@
+@import "~src/variables.scss";
+
+.card-container {
+  padding: 25px 0px;
+  margin: 0px;
+  img {
+    max-width: 100%;
+  }
+}
+
+.card-name {
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 15px;
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+  }
+}
+
+.card-attack {
+  @include card;
+}
+
+.card-resistance {
+  @include card;
+}
+
+.card-weakness {
+  @include card;
+}
+
+.card-id {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #fbdf3d;
+  text-transform: uppercase;
+  margin-right: 5px;
+}
+
+.card-types {
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #eee;
+  text-transform: uppercase;
+}
+
+.card-property-title {
+  font-size: 24px;
+  padding: 5px 0px;
+}
+
+.property-subtitle {
+  padding: 5px 0px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.property-value {
+  font-size: 14px;
+}
+
+.back-to-list {
+  padding: 25px 0px;
+  button {
+    background-color: #aaa;
+    color: #fff;
+    padding: 10px 25px;
+    font-weight: 500;
+    border-radius: 4px;
+    border: 0px;
+    outline: none;
+    &:hover {
+      opacity: $button-opacity;
+    }
+  }
+}
+
+.none-data {
+  padding-top: 50px;
+  p {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.description {
+  padding-top: 10px;
+}

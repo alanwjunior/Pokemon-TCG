@@ -5,6 +5,7 @@
   margin: 0px;
   img {
     max-width: 100%;
+    height: calc(100vh - 134px);
   }
 }
 
@@ -60,6 +61,7 @@
 
 .property-value {
   font-size: 14px;
+  padding: 5px 0px;
 }
 
 .back-to-list {
@@ -88,4 +90,39 @@
 
 .description {
   padding-top: 10px;
+}
+
+.pokemon-details {
+  width: 60%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+  .pokemon-details {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .property-subtitle {
+    text-align: center;
+  }
+
+  .property-value {
+    padding: 5px 0px;
+    text-align: center;
+  }
+
+  .card-property-title {
+    text-align: center;
+  }
+
+  .card-id {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .card-types {
+    display: block;
+    margin-bottom: 5px;
+  }
 }

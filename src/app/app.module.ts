@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +10,7 @@ import { ListPokemonComponent } from './list-pokemon/list-pokemon.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 @NgModule({
@@ -16,10 +18,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AppComponent,
     ListPokemonComponent,
     PokemonCardComponent,
-    LoaderSpinnerComponent
+    LoaderSpinnerComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule

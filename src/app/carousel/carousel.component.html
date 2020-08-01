@@ -1,0 +1,29 @@
+<div class="carousel-container">
+  <ng-container *ngFor="let slide of slides; let i = index">
+    <div class="slide-container align-center" *ngIf="i === currentSlide" (click)="openPokemonDetails()">
+      <img
+        [src]="slide.src"
+        class="slide"
+        @carouselAnimation
+      />
+      <div class="slide-content">
+        <div class="slide-title">
+          <h1 class="">{{ slide.title }}</h1>
+        </div>
+        <div class="slide-id">
+          #ID: {{ slide.id }}
+        </div>
+        <div class="slide-types">
+          Tipo(s): {{ slide.types ? slide.types.join(', ') : 'Não informado' }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <button class="control prev" (click)="onPreviousClick()">
+    <span class="arrow left"></span>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <span class="arrow right"></span>
+  </button>
+</div>

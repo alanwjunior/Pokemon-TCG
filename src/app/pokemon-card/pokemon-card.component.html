@@ -1,85 +1,74 @@
 <div class="container-fluid">
   <ng-container *ngIf="card">
     <div class="row card-container">
-      <div class="col-md-6 align-center">
+      <div class="col-md-4 align-center">
         <img [src]="card.imageUrlHiRes" alt="Pokemon card image">
       </div>
-      <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-12 card-name">
-            <h1>{{ card.name }}
-              <span class="card-id">#ID: {{ card.id }}</span>
-              <span class="card-types" *ngIf="card.types && card.types.length > 0">
-                Tipo(s): {{ card.types.join(', ')}}
-              </span>
-            </h1>
-          </div>
-          <div class="col-md-12" *ngIf="card.attacks">
-            <h3 class="card-property-title">
-              Ataques
-            </h3>
-            <div class="row">
-              <div class="col-md-12 card-attack" *ngFor="let attack of card.attacks">
-                <div class="row">
-                  <div class="col-md-6">
+      <div class="col-md-8">
+        <div class="pokemon-details">
+          <div class="row">
+            <div class="col-md-12 card-name">
+              <h1>{{ card.name }}
+                <span class="card-id">#ID: {{ card.id }}</span>
+                <span class="card-types" *ngIf="card.types && card.types.length > 0">
+                  Tipo(s): {{ card.types.join(', ')}}
+                </span>
+              </h1>
+            </div>
+            <div class="col-md-12" *ngIf="card.attacks">
+              <h3 class="card-property-title">
+                Ataques
+              </h3>
+              <div class="row card-attack">
+                <div class="col-md-12">
+                  <ng-container *ngFor="let attack of card.attacks">
                     <p class="property-subtitle">Nome</p>
                     <p class="property-value">{{ attack.name }}</p>
-                  </div>
-                  <div class="col-md-3 align-center">
-                    <p class="property-subtitle">Custo de mana</p>
-                    <p class="property-value">{{ attack.convertedEnergyCost }}</p>
-                  </div>
-                  <div class="col-md-3">
-                    <p class="property-subtitle">Dano</p>
-                    <p class="property-value">{{ attack.damage }}</p>
-                  </div>
-                  <div class="col-md-12 description" *ngIf="attack.text">
-                    <p class="property-subtitle">Descrição</p>
-                    <p class="property-value">{{ attack.text }}</p>
-                  </div>
+                  </ng-container>
+
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6" *ngIf="card.resistances">
-            <h3 class="card-property-title">
-              Resistência(s)
-            </h3>
-            <div class="row card-resistance" *ngFor="let resistence of card.resistances">
-              <div class="col-md-6">
-                <p class="property-subtitle">Tipo</p>
-                <p class="property-value">{{ resistence.type }}</p>
-              </div>
-              <div class="col-md-6 align-center">
-                <p class="property-subtitle">Valor</p>
-                <p class="property-value">{{ resistence.value }}</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6" *ngIf="card.weaknesses && card.weaknesses.length > 0">
-            <h3 class="card-property-title">
-              Fraqueza(s)
-            </h3>
-            <div class="row card-weakness" *ngFor="let weak of card.weaknesses">
-              <div class="col-md-6">
-                <p class="property-subtitle">Tipo</p>
-                <p class="property-value">{{ weak.type }}</p>
-              </div>
-              <div class="col-md-6 align-center">
-                <p class="property-subtitle">Valor</p>
-                <p class="property-value">{{ weak.value }}</p>
+            <div class="col-md-12" *ngIf="card.resistances">
+              <h3 class="card-property-title">
+                Resistência(s)
+              </h3>
+              <div class="row card-resistance flex-grow-1" *ngFor="let resistence of card.resistances">
+                <div class="col-md-6">
+                  <p class="property-subtitle">Tipo</p>
+                  <p class="property-value">{{ resistence.type }}</p>
+                </div>
+                <div class="col-md-6 align-center">
+                  <p class="property-subtitle">Valor</p>
+                  <p class="property-value">{{ resistence.value }}</p>
+                </div>
               </div>
             </div>
+            <div class="col-md-12" *ngIf="card.weaknesses && card.weaknesses.length > 0">
+              <h3 class="card-property-title">
+                Fraqueza(s)
+              </h3>
+              <div class="row card-weakness" *ngFor="let weak of card.weaknesses">
+                <div class="col-md-6">
+                  <p class="property-subtitle">Tipo</p>
+                  <p class="property-value">{{ weak.type }}</p>
+                </div>
+                <div class="col-md-6 align-center">
+                  <p class="property-subtitle">Valor</p>
+                  <p class="property-value">{{ weak.value }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12" *ngIf="!cardHasAttacksResistanceWeakness && card.text && card.text.length > 0">
+              <p>
+                {{ card.text.join('. ')}}
+              </p>
+            </div>
           </div>
-          <div class="col-md-12" *ngIf="!cardHasAttacksResistanceWeakness && card.text && card.text.length > 0">
-            <p>
-              {{ card.text.join('. ')}}
-            </p>
-          </div>
-        </div>
-        <div class="row back-to-list">
-          <div class="col-md-12 align-center">
-            <button (click)="backToList()">Voltar para lista</button>
+          <div class="row back-to-list">
+            <div class="col-md-12 align-center">
+              <button (click)="backToList()">Voltar para lista</button>
+            </div>
           </div>
         </div>
       </div>
@@ -98,3 +87,17 @@
     </div>
   </ng-container>
 </div>
+
+
+<!-- <div class="col-md-3 align-center">
+      <p class="property-subtitle">Custo de mana</p>
+      <p class="property-value">{{ attack.convertedEnergyCost }}</p>
+    </div>
+    <div class="col-md-3">
+      <p class="property-subtitle">Dano</p>
+      <p class="property-value">{{ attack.damage }}</p>
+    </div> -->
+    <!-- <div class="col-md-12 description" *ngIf="attack.text">
+      <p class="property-subtitle">Descrição</p>
+      <p class="property-value">{{ attack.text }}</p>
+    </div> -->

@@ -57,3 +57,22 @@ table {
 .clickable {
   cursor: pointer;
 }
+
+.is-mobile {
+  display: none;
+}
+
+.is-desktop {
+  display: block;
+}
+
+@media screen and (max-width: 900px) {
+  .is-mobile {
+    display: block;
+  }
+
+  .is-desktop {
+    display: none;
+  }
+}
+

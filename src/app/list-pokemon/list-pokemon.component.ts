@@ -11,6 +11,7 @@ export class ListPokemonComponent implements OnInit {
 
   cards = [];
   filteredCards = [];
+  slides = [];
 
   hasLoaded = false;
 
@@ -23,6 +24,14 @@ export class ListPokemonComponent implements OnInit {
     const result = await this.pokemonService.listPokemonCards();
     this.cards = result && result["cards"] ? result["cards"] : [];
     this.filteredCards = [...this.cards];
+    this.filteredCards.map(c => {
+      this.slides.push({
+        src: c.imageUrl,
+        title: c.name,
+        id: c.id,
+        types: c.types
+      });
+    });
     this.sortCardsByName();
     this.hasLoaded = true;
   }

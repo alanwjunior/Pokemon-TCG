@@ -46,3 +46,51 @@
     font-weight: 700;
   }
 }
+
+.pokemon-image {
+  img {
+    max-width: 100%;
+  }
+}
+
+.pokemon-id {
+  font-size: 12px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background-color: #fbdf3d;
+  text-transform: uppercase;
+  margin-right: 5px;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  margin: 5px 0px;
+  word-break: break-word;
+}
+
+.pokemon-types {
+  font-size: 12px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background-color: #eee;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  margin: 5px 0px;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 900px) {
+  .pokemon-card {
+    // float: left;
+    // width: 100%;
+  }
+
+  .pokemon-carrousel {
+    max-width: 100%;
+    overflow-x: auto;
+    li {
+      display: inline-block;
+    }
+  }
+}

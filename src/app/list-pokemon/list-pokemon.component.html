@@ -1,35 +1,42 @@
 <div class="container-fluid">
-  <div class="row" *ngIf="filteredCards && filteredCards.length > 0">
-    <div class="col-md-12 search-by-name">
-      <p>Filtre pelo nome do Pokemon</p>
-      <input type="text" placeholder="Digite o nome do Pokemon" (change)="filterPokemons($event)" />
-    </div>
-    <div class="col-md-3 pokemon-card-container" *ngFor="let card of filteredCards; let i = index">
-      <div class="pokemon-card" [ngClass]="'pokemon-card-' + i " (click)="openCard(card.id)">
-        <div class="pokemon-card-name align-center">
-          <h4>{{ card.name }}</h4>
-        </div>
-        <div class="pokemon-image align-center">
-          <img [src]="card.imageUrl" alt="Pokemon card image">
-        </div>
-        <div class="row pokemon-more-info">
-          <div class="col-sm-6 pokemon-card-id">
-            <p class="field-title">ID</p>
-            <p>
-              {{ card.id }}
-            </p>
+  <div class="is-desktop">
+    <div class="row" *ngIf="filteredCards && filteredCards.length > 0">
+      <div class="col-md-12 search-by-name">
+        <p>Filtre pelo nome do Pokemon</p>
+        <input type="text" placeholder="Digite o nome do Pokemon" (change)="filterPokemons($event)" />
+      </div>
+      <div class="col-md-3 pokemon-card-container" *ngFor="let card of filteredCards; let i = index">
+        <div class="pokemon-card" [ngClass]="'pokemon-card-' + i " (click)="openCard(card.id)">
+          <div class="pokemon-card-name align-center">
+            <h4>{{ card.name }}</h4>
           </div>
-          <div class="col-sm-6 pokemon-card-type">
-            <p class="field-title">Tipo(s)</p>
-            <p>
-              {{ card.types ? card.types.join(', ') : '-' }}
-            </p>
+          <div class="pokemon-image align-center">
+            <img [src]="card.imageUrl" alt="Pokemon card image">
+          </div>
+          <div class="row pokemon-more-info">
+            <div class="col-12">
+              <div class="pokemon-id">
+                #ID: {{ card.id | uppercase }}
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="pokemon-types">
+                Tipo(s): {{ card.types ? card.types.join(', ') : 'Não informado' }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-md-12 none-data align-center" *ngIf="hasLoaded && (!cards || cards.length === 0)">
+        <p>Nenhum pokemon encontrado.</p>
+      </div>
     </div>
-    <div class="col-md-12 none-data align-center" *ngIf="hasLoaded && (!cards || cards.length === 0)">
-      <p>Nenhum pokemon encontrado.</p>
-    </div>
+  </div>
+  <div class="is-mobile">
+    <!-- <div class="row"> -->
+      <!-- <div class="col-12"> -->
+        <app-carousel [slides]="slides"></app-carousel>
+      <!-- </div> -->
+    <!-- </div> -->
   </div>
 </div>

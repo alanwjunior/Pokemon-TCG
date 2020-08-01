@@ -12,6 +12,8 @@ export class PokemonCardComponent implements OnInit {
   card = null;
   cardHasAttacksResistanceWeakness = false;
   hasLoaded = false;
+  selectedAttack = null;
+  isAttackModalOpened = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,5 +38,15 @@ export class PokemonCardComponent implements OnInit {
 
   backToList() {
     this.router.navigate(['/cards']);
+  }
+
+  openModalAttackDetails(attack) {
+    this.selectedAttack = attack;
+    this.isAttackModalOpened = true;
+  }
+
+  closeAttackModal() {
+    this.selectedAttack = null;
+    this.isAttackModalOpened = false;
   }
 }

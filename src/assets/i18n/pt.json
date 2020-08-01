@@ -7,5 +7,8 @@
   "POKEMON_NAME_FIELD_LABEL": "Nome",
   "POKEMON_TYPE_FIELD_LABEL": "Tipo",
   "POKEMON_VALUE_FIELD_LABEL": "Valor",
-  "BTN_BACK_LIST": "Voltar para lista"
+  "BTN_BACK_LIST": "Voltar para lista",
+  "ATTACK_ENERGY_COST_LABEL": "Custo de mana",
+  "ATTACK_DAMAGE_LABEL": "Dano",
+  "ATTACK_DESCRIPTION_LABEL": "Descrição"
 }

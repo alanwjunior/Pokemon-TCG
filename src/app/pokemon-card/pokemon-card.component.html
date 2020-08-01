@@ -23,7 +23,12 @@
                 <div class="col-md-12">
                   <ng-container *ngFor="let attack of card.attacks">
                     <p class="property-subtitle">{{ 'POKEMON_NAME_FIELD_LABEL' | translate }}</p>
-                    <p class="property-value">{{ attack.name }}</p>
+                    <p class="property-value more-details-icon" (click)="openModalAttackDetails(attack)">
+                      {{ attack.name }}
+                      <span class="material-icons">
+                        zoom_in
+                      </span>
+                    </p>
                   </ng-container>
 
                 </div>
@@ -87,6 +92,21 @@
     </div>
   </ng-container>
 </div>
+
+<app-modal *ngIf="isAttackModalOpened" (close)="closeAttackModal()">
+  <div class="col-md-4" *ngIf="selectedAttack.convertedEnergyCost">
+    <p class="property-subtitle">{{ 'ATTACK_ENERGY_COST_LABEL' | translate }}</p>
+    <p class="property-value">{{ selectedAttack.convertedEnergyCost }}</p>
+  </div>
+  <div class="col-md-4" *ngIf="selectedAttack.damage">
+    <p class="property-subtitle">{{ 'ATTACK_DAMAGE_LABEL' | translate }}</p>
+    <p class="property-value">{{ selectedAttack.damage }}</p>
+  </div>
+  <div class="col-md-4" *ngIf="selectedAttack.text">
+    <p class="property-subtitle">{{ 'ATTACK_DESCRIPTION_LABEL' | translate }}</p>
+    <p class="property-value">{{ selectedAttack.text }}</p>
+  </div>
+</app-modal>
 
 
 <!-- <div class="col-md-3 align-center">

@@ -97,6 +97,15 @@
   margin: 0 auto;
 }
 
+.more-details-icon {
+  display: inline-flex;
+  align-items: center;
+  span {
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .pokemon-details {
     width: 100%;

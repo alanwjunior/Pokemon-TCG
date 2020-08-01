@@ -13,6 +13,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CarouselComponent } from './carousel/carousel.component';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ModalComponent } from './modal/modal.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,7 +25,8 @@ export function createTranslateLoader(http: HttpClient) {
     ListPokemonComponent,
     PokemonCardComponent,
     LoaderSpinnerComponent,
-    CarouselComponent
+    CarouselComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@
   <div class="is-desktop">
     <div class="row" *ngIf="filteredCards && filteredCards.length > 0">
       <div class="col-md-12 search-by-name">
-        <p>{{ 'name' | translate }}</p>
+        <p>{{ 'FILTER_POKENAME_TITLE' | translate }}</p>
         <input type="text" placeholder="Digite o nome do Pokemon" (input)="filterPokemons($event)" />
       </div>
       <div class="col-md-3 pokemon-card-container" *ngFor="let card of filteredCards; let i = index">

@@ -1,0 +1,11 @@
+{
+  "FILTER_POKENAME_TITLE": "Filter by name",
+  "POKEMON_TYPE_LABEL": "Type(s)",
+  "POKEMON_ATTACKS_LABEL": "Attack(s)",
+  "POKEMON_RESISTANCE_LABEL": "Resistance(s)",
+  "POKEMON_WEAKNESS_LABEL": "Weakness",
+  "POKEMON_NAME_FIELD_LABEL": "Name",
+  "POKEMON_TYPE_FIELD_LABEL": "Type",
+  "POKEMON_VALUE_FIELD_LABEL": "Value",
+  "BTN_BACK_LIST": "Back to list page"
+}

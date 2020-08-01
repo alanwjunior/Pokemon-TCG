@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ListPokemonComponent } from './list-pokemon/list-pokemon.component';
@@ -11,7 +11,12 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 import { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CarouselComponent } from './carousel/carousel.component';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +31,16 @@ import { CarouselComponent } from './carousel/carousel.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient]
+        }
+      }
+    )
   ],
   providers: [
     {
@@ -34,7 +48,16 @@ import { CarouselComponent } from './carousel/carousel.component';
       useClass: AuthInterceptor,
       multi: true,
     },
+    TranslateService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private translate: TranslateService,
+
+  ) {
+    this.translate.setDefaultLang('en');
+    translate.use('en');
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../services/pokemon.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -17,13 +18,22 @@ export class ListPokemonComponent implements OnInit {
 
   constructor(
     private pokemonService: PokemonService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) { }
 
   async ngOnInit() {
+    console.log(this.translateService);
     const result = await this.pokemonService.listPokemonCards();
     this.cards = result && result["cards"] ? result["cards"] : [];
     this.filteredCards = [...this.cards];
+    this.setSlides();
+    this.sortCardsByName();
+    this.hasLoaded = true;
+  }
+
+  setSlides() {
+    this.slides = [];
     this.filteredCards.map(c => {
       this.slides.push({
         src: c.imageUrl,
@@ -32,8 +42,6 @@ export class ListPokemonComponent implements OnInit {
         types: c.types
       });
     });
-    this.sortCardsByName();
-    this.hasLoaded = true;
   }
 
   openCard(id) {
@@ -53,6 +61,7 @@ export class ListPokemonComponent implements OnInit {
     } else {
       this.filteredCards = this.cards.filter(t => t.name.toUpperCase().indexOf(name.toUpperCase()) !== -1);
     }
+    this.setSlides();
   }
 
 }

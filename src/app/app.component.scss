@@ -19,3 +19,16 @@
   max-height: calc(100vh - 84px);
   overflow: auto;
 }
+
+.languages {
+  position: fixed;
+  right: 15px;
+}
+
+.language {
+  cursor: pointer;
+  img {
+    width: 32px;
+    margin-bottom: 5px;
+  }
+}

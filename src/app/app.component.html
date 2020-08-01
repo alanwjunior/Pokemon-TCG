@@ -1,6 +1,14 @@
 <app-loader-spinner></app-loader-spinner>
 <div class="app">
   <div class="header">
+    <div class="languages">
+      <div class="language">
+        <img src="./../assets/en.png" alt="" width="32px" (click)="changeLang('en')">
+      </div>
+      <div class="language">
+        <img src="./../assets/pt.png" alt="" width="32px" (click)="changeLang('pt')">
+      </div>
+    </div>
     <div>
       <img class="clickable" (click)="goToPokemonList()" src="./../assets/pokemon.png" alt="pokemon logo">
     </div>

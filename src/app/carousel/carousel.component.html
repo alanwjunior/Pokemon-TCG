@@ -14,7 +14,7 @@
           #ID: {{ slide.id }}
         </div>
         <div class="slide-types">
-          Tipo(s): {{ slide.types ? slide.types.join(', ') : 'Não informado' }}
+          {{ 'POKEMON_TYPE_LABEL' | translate }}: {{ slide.types ? slide.types.join(', ') : 'Não informado' }}
         </div>
       </div>
     </div>

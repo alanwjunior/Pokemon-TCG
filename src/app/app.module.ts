@@ -14,6 +14,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ModalComponent } from './modal/modal.component';
+import { StoreModule } from '@ngrx/store';
+import * as pokemonState from './state/pokemon/pokemon.reducer';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,7 +44,10 @@ export function createTranslateLoader(http: HttpClient) {
           deps: [HttpClient]
         }
       }
-    )
+    ),
+    StoreModule.forRoot({
+      pokemons: pokemonState.reducer
+    })
   ],
   providers: [
     {

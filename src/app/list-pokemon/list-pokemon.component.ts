@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../services/pokemon.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as rootState from '../state/app.state';
+import * as pokemonState from '../state/pokemon/pokemon.reducer';
+import * as pokemonActions from '../state/pokemon/pokemon.actions';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -19,16 +23,29 @@ export class ListPokemonComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private store: Store<rootState.State>
   ) { }
 
   async ngOnInit() {
-    console.log(this.translateService);
-    const result = await this.pokemonService.listPokemonCards();
-    this.cards = result && result["cards"] ? result["cards"] : [];
+    this.store.pipe(select(pokemonState.listPokemons))
+    .subscribe(async (pokemons) => {
+      if(!pokemons || pokemons.length === 0) {
+        const result = await this.pokemonService.listPokemonCards();
+        this.cards = result && result["cards"] ? result["cards"] : [];
+        this.sortCardsByName();
+        this.store.dispatch(new pokemonActions.SavePokemons(this.cards));
+        this.setFilteredPokemons();
+      } else {
+        this.cards = pokemons;
+        this.setFilteredPokemons();
+      }
+    });
+  }
+
+  setFilteredPokemons() {
     this.filteredCards = [...this.cards];
     this.setSlides();
-    this.sortCardsByName();
     this.hasLoaded = true;
   }
 

@@ -10,5 +10,6 @@
   "BTN_BACK_LIST": "Back to list page",
   "ATTACK_ENERGY_COST_LABEL": "Retreat cost",
   "ATTACK_DAMAGE_LABEL": "Damage",
-  "ATTACK_DESCRIPTION_LABEL": "Description"
+  "ATTACK_DESCRIPTION_LABEL": "Description",
+  "NO_POKEMON_REGISTER": "No Pokemon found"
 }

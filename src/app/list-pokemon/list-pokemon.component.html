@@ -28,18 +28,18 @@
         </div>
       </div>
       <div class="col-md-12 none-data align-center" *ngIf="hasLoaded && (!cards || cards.length === 0)">
-        <p>Nenhum pokemon encontrado.</p>
+        <p>{{ 'NO_POKEMON_REGISTER' | translate }}</p>
       </div>
     </div>
   </div>
   <div class="is-mobile">
     <div class="col-md-12 search-by-name">
-      <p>Filtre pelo nome do Pokemon</p>
+      <p>{{ 'FILTER_POKENAME_TITLE' | translate }}</p>
       <input type="text" placeholder="Digite o nome do Pokemon" (input)="filterPokemons($event)" />
     </div>
     <app-carousel [slides]="slides" *ngIf="slides.length > 0"></app-carousel>
     <div class="col-md-12 none-data align-cente" *ngIf="slides.length === 0">
-      <p>Nenhum pokemon encontrado.</p>
+      <p>{{ 'NO_POKEMON_REGISTER' | translate }}</p>
     </div>
   </div>
 </div>

@@ -10,5 +10,6 @@
   "BTN_BACK_LIST": "Voltar para lista",
   "ATTACK_ENERGY_COST_LABEL": "Custo de mana",
   "ATTACK_DAMAGE_LABEL": "Dano",
-  "ATTACK_DESCRIPTION_LABEL": "Descrição"
+  "ATTACK_DESCRIPTION_LABEL": "Descrição",
+  "NO_POKEMON_REGISTER": "Nenhum Pokemon encontrado"
 }

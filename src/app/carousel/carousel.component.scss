@@ -73,7 +73,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0.5em;
+  padding: 0.1em;
   color: white;
   font-weight: bold;
   font-size: 3em;
@@ -91,6 +91,11 @@
   }
   &.prev {
     left: 0;
+  }
+
+  span {
+    color: #000;
+    font-size: 48px;
   }
 }
 

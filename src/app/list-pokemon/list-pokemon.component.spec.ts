@@ -7,16 +7,21 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ModalComponent } from '../modal/modal.component';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { MemoizedSelector } from '@ngrx/store';
+import * as fromPokemon from './../state/pokemon/pokemon.reducer';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ListPokemonComponent', () => {
   let component: ListPokemonComponent;
   let fixture: ComponentFixture<ListPokemonComponent>;
   let store: MockStore;
+  let mockListPokemonsSelector: MemoizedSelector<fromPokemon.PokemonState, any>;
 
   const pokemonService = jasmine.createSpyObj('PokemonService', ['listPokemonCards']);
-  const translateService = jasmine.createSpyObj('TranslateService', ['']);
+  const translateService = jasmine.createSpyObj('TranslateService', ['use']);
   const initialState = {
-    pokemon: [
+    pokemons: [
       {
         id: 'xy7-10',
         name: 'Vespiquen',
@@ -129,15 +134,8 @@ describe('ListPokemonComponent', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: Router,
-        },
-        {
           provide: PokemonService,
           useValue: pokemonService
-        },
-        {
-          provide: TranslateService,
-          useValue: translateService
         },
         provideMockStore({ initialState }),
       ],
@@ -146,35 +144,39 @@ describe('ListPokemonComponent', () => {
         ModalComponent,
         CarouselComponent
       ],
-      imports: [TranslateModule.forRoot()]
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     store = TestBed.inject(MockStore);
-    const mockHomeState = store.overrideSelector(
-      homeState,
-      {checkStatus: true}
+    mockListPokemonsSelector = store.overrideSelector(
+      fromPokemon.listPokemons,
+      initialState.pokemons
     );
     fixture = TestBed.createComponent(ListPokemonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-  // it('should sort cards by name', () => {
-  //   component.cards = [ { name: 'Teste' }, { name: 'Ateste' } ];
-  //   component.sortCardsByName();
-  //   expect(component.cards[0].name).toEqual('Ateste');
-  // });
+  it('should sort cards by name', () => {
+    component.cards = [ { name: 'Teste' }, { name: 'Ateste' } ];
+    component.sortCardsByName();
+    expect(component.cards[0].name).toEqual('Ateste');
+  });
 
-  // it('should filter by card name', () => {
-  //   component.cards = [ { name: 'Teste' }, { name: 'Ateste' } ];
-  //   component.filterPokemons({ target: { value: 'Ateste' } });
-  //   expect(component.filteredCards[0].name).toEqual('Ateste');
-  // });
+  it('should filter by card name', () => {
+    component.cards = [ { name: 'Teste' }, { name: 'Ateste' } ];
+    component.filterPokemons({ target: { value: 'Ateste' } });
+    expect(component.filteredCards[0].name).toEqual('Ateste');
+  });
 });

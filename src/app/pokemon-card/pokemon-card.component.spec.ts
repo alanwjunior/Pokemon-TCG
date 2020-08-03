@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { PokemonService } from '../services/pokemon.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalComponent } from '../modal/modal.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PokemonCardComponent', () => {
   let fixture: ComponentFixture<PokemonCardComponent>;
@@ -42,16 +43,16 @@ describe('PokemonCardComponent', () => {
         {
           provide: PokemonService,
           useValue: pokemonService
-        },
-        {
-          provide: Router,
         }
       ],
       declarations: [
         PokemonCardComponent,
         ModalComponent
       ],
-      imports: [TranslateModule.forRoot()]
+      imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot()
+      ]
     }).compileComponents();
   }));
 
@@ -67,35 +68,35 @@ describe('PokemonCardComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  // it('pokemon has attack', () => {
-  //   component.card = {
-  //     imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-  //     imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-  //     attacks: [{ name: 'Teste' }]
-  //   };
-  //   fixture.detectChanges();
-  //   component.hasAttacksOrResistanceOrWeakness();
-  //   expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
-  // });
+  it('pokemon has attack', () => {
+    component.card = {
+      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
+      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
+      attacks: [{ name: 'Teste' }]
+    };
+    fixture.detectChanges();
+    component.hasAttacksOrResistanceOrWeakness();
+    expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
+  });
 
-  // it('pokemon has resistance', () => {
-  //   component.card = {
-  //     imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-  //     imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-  //     resistances: [{ name: 'Teste' }]
-  //   };
-  //   component.hasAttacksOrResistanceOrWeakness();
-  //   expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
-  // });
+  it('pokemon has resistance', () => {
+    component.card = {
+      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
+      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
+      resistances: [{ name: 'Teste' }]
+    };
+    component.hasAttacksOrResistanceOrWeakness();
+    expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
+  });
 
-  // it('pokemon has weaknesses', () => {
-  //   fixture.componentInstance.card = {
-  //     imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-  //     imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-  //     weaknesses: [{ name: 'Teste' }]
-  //   };
-  //   fixture.detectChanges();
-  //   fixture.componentInstance.hasAttacksOrResistanceOrWeakness();
-  //   expect(fixture.componentInstance.cardHasAttacksResistanceWeakness).toEqual(true);
-  // });
+  it('pokemon has weaknesses', () => {
+    fixture.componentInstance.card = {
+      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
+      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
+      weaknesses: [{ name: 'Teste' }]
+    };
+    fixture.detectChanges();
+    fixture.componentInstance.hasAttacksOrResistanceOrWeakness();
+    expect(fixture.componentInstance.cardHasAttacksResistanceWeakness).toEqual(true);
+  });
 });

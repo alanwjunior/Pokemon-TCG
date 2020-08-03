@@ -15,7 +15,7 @@ describe('list-pokemon-page', () => {
         ExpectedConditions.presenceOf(importantElement),
         20000, 'element is not present')
         .then(async () => {
-          expect(await page.getFilterTitleText()).toEqual('Filtre pelo nome do Pokemon');
+          expect(await page.getFilterTitleText()).toEqual('Filtre pelo nome');
         });
   });
 

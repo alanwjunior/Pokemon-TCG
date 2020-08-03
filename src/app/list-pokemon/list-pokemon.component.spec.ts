@@ -152,7 +152,11 @@ describe('ListPokemonComponent', () => {
   }));
 
   beforeEach(() => {
-    // store = TestBed.inject
+    store = TestBed.inject(MockStore);
+    const mockHomeState = store.overrideSelector(
+      homeState,
+      {checkStatus: true}
+    );
     fixture = TestBed.createComponent(ListPokemonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

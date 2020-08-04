@@ -6,6 +6,7 @@ import * as rootState from '../state/app.state';
 import * as pokemonState from '../state/pokemon/pokemon.reducer';
 import * as pokemonActions from '../state/pokemon/pokemon.actions';
 import { Store, select } from '@ngrx/store';
+import { Pokemon, PokemonCard } from '../models/pokemon.model';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -14,25 +15,29 @@ import { Store, select } from '@ngrx/store';
 })
 export class ListPokemonComponent implements OnInit {
 
-  cards = [];
-  filteredCards = [];
-  slides = [];
+  cards: Array<Pokemon>;
+  filteredCards: Array<Pokemon>;
+  slides: Array<PokemonCard>;
 
-  hasLoaded = false;
+  hasLoaded: boolean;
 
   constructor(
     private pokemonService: PokemonService,
     private router: Router,
     private translateService: TranslateService,
     private store: Store<rootState.State>
-  ) { }
+  ) {
+    this.hasLoaded = false;
+    this.cards = [];
+    this.filteredCards = [];
+    this.slides = [];
+  }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.store.pipe(select(pokemonState.listPokemons))
     .subscribe(async (pokemons) => {
       if(!pokemons || pokemons.length === 0) {
-        const result = await this.pokemonService.listPokemonCards();
-        this.cards = result && result["cards"] ? result["cards"] : [];
+        this.cards = await this.pokemonService.listPokemonCards();
         this.sortCardsByName();
         this.store.dispatch(new pokemonActions.SavePokemons(this.cards));
         this.setFilteredPokemons();
@@ -43,13 +48,13 @@ export class ListPokemonComponent implements OnInit {
     });
   }
 
-  setFilteredPokemons() {
+  setFilteredPokemons(): void {
     this.filteredCards = [...this.cards];
     this.setSlides();
     this.hasLoaded = true;
   }
 
-  setSlides() {
+  setSlides(): void {
     this.slides = [];
     this.filteredCards.map(c => {
       this.slides.push({
@@ -61,17 +66,17 @@ export class ListPokemonComponent implements OnInit {
     });
   }
 
-  openCard(id) {
+  openCard(id): void {
     this.router.navigate(['/card/' + id]);
   }
 
-  sortCardsByName() {
+  sortCardsByName(): void {
     this.cards.sort((previous, next) => {
       return previous.name < next.name ? -1 : 1;
     });
   }
 
-  filterPokemons(event) {
+  filterPokemons(event): void {
     const name = event.target.value;
     if(!name || name.length === 0) {
       this.filteredCards = [...this.cards];

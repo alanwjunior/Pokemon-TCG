@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../services/pokemon.service';
+import { Pokemon } from '../models/pokemon.model';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -9,9 +10,9 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class PokemonCardComponent implements OnInit {
 
-  card = null;
-  cardHasAttacksResistanceWeakness = false;
-  hasLoaded = false;
+  card: Pokemon;
+  cardHasAttacksResistanceWeakness: boolean;
+  hasLoaded: boolean;
   selectedAttack = null;
   isAttackModalOpened = false;
 
@@ -19,12 +20,15 @@ export class PokemonCardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private pokemonService: PokemonService,
     private router: Router
-  ) { }
+  ) {
+    this.card = null;
+    this.cardHasAttacksResistanceWeakness = false;
+    this.hasLoaded = false;
+  }
 
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    const result = await this.pokemonService.getCard(id);
-    this.card = result && result["cards"] && result["cards"].length > 0 ? result["cards"][0] : null;
+    this.card = await this.pokemonService.getCard(id);
     this.hasAttacksOrResistanceOrWeakness();
     this.hasLoaded = true;
   }

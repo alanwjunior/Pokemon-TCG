@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { PokemonCard } from '../models/pokemon.model';
 
 @Component({
   selector: 'app-carousel',
@@ -26,29 +27,31 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class CarouselComponent implements OnInit {
 
-  @Input() slides;
+  @Input() slides: Array<PokemonCard>;
 
-  currentSlide = 0;
+  currentSlide: number;
 
   constructor(
     private router: Router
-  ) { }
+  ) {
+    this.currentSlide = 0;
+  }
 
   ngOnInit() {
 
   }
 
-  onPreviousClick() {
+  onPreviousClick(): void {
     const previous = this.currentSlide - 1;
     this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
   }
 
-  onNextClick() {
+  onNextClick(): void {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
   }
 
-  openPokemonDetails() {
+  openPokemonDetails(): void {
     this.router.navigate(['/card/' + this.slides[this.currentSlide].id]);
   }
 

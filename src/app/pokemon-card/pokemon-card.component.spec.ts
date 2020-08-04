@@ -17,11 +17,60 @@ describe('PokemonCardComponent', () => {
   const pokemonService = jasmine.createSpyObj('PokemonService', ['getCard']);
   pokemonService.getCard.and.callFake(() => {
     return {
-      cards: [
+      id: 'xyp-XY05',
+      name: 'Xerneas',
+      nationalPokedexNumber: 716,
+      imageUrl: 'https://images.pokemontcg.io/xyp/XY05.png',
+      imageUrlHiRes: 'https://images.pokemontcg.io/xyp/XY05_hires.png',
+      types: [
+        'Fairy'
+      ],
+      supertype: 'Pokémon',
+      subtype: 'Basic',
+      hp: '130',
+      retreatCost: [
+        'Colorless',
+        'Colorless'
+      ],
+      convertedRetreatCost: 2,
+      number: 'XY05',
+      artist: '5ban Graphics',
+      rarity: 'Rare',
+      series: 'XY',
+      set: 'XY Black Star Promos',
+      setCode: 'xyp',
+      attacks: [
         {
-          imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-          imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-          attacks: [{ name: 'Teste' }]
+          cost: [
+            'Fairy'
+          ],
+          name: 'Geomancy',
+          text: 'Choose 2 of your Benched Pokémon. Shuffle your deck afterward.',
+          damage: '',
+          convertedEnergyCost: 1
+        },
+        {
+          cost: [
+            'Fairy',
+            'Fairy',
+            'Colorless'
+          ],
+          name: 'Rainbow Spear',
+          text: 'Discard an Energy attached to this Pokémon.',
+          damage: '100',
+          convertedEnergyCost: 3
+        }
+      ],
+      resistances: [
+        {
+          type: 'Darkness',
+          value: '-20'
+        }
+      ],
+      weaknesses: [
+        {
+          type: 'Metal',
+          value: '×2'
         }
       ]
     };
@@ -56,9 +105,10 @@ describe('PokemonCardComponent', () => {
     }).compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
+    await component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -69,32 +119,17 @@ describe('PokemonCardComponent', () => {
   }));
 
   it('pokemon has attack', () => {
-    component.card = {
-      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-      attacks: [{ name: 'Teste' }]
-    };
     fixture.detectChanges();
     component.hasAttacksOrResistanceOrWeakness();
     expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
   });
 
   it('pokemon has resistance', () => {
-    component.card = {
-      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-      resistances: [{ name: 'Teste' }]
-    };
     component.hasAttacksOrResistanceOrWeakness();
     expect(component.cardHasAttacksResistanceWeakness).toEqual(true);
   });
 
   it('pokemon has weaknesses', () => {
-    fixture.componentInstance.card = {
-      imageUrl: "https://images.pokemontcg.io/dp6/90.png",
-      imageUrlHiRes: "https://images.pokemontcg.io/dp6/90_hires.png",
-      weaknesses: [{ name: 'Teste' }]
-    };
     fixture.detectChanges();
     fixture.componentInstance.hasAttacksOrResistanceOrWeakness();
     expect(fixture.componentInstance.cardHasAttacksResistanceWeakness).toEqual(true);

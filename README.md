@@ -7,7 +7,7 @@ The application has two routes:
 - /cards: list all pokemons;
 - /card/:pokemonId: display details about the specified pokemon.
 
-In order to avoid excessive calls to the API and deliver a better user experience, a store was developed using NgRx and the pokemon list is loaded once. The application has support to PWA and is available on https://tcgpokemonchallenge.web.app/cards.
+In order to avoid excessive calls to the API and deliver a better user experience, a store was developed using NgRx and the pokemon list is loaded once. The application has support to PWA and is available on https://tcgpokemonchallenge.web.app/.
 
 ## How to run
 
